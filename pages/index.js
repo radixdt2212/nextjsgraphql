@@ -21,19 +21,30 @@ export default function Home({ launches }) {
         <div className={styles.grid}>
           {launches.map((launch) => {
             return (
-              <a
-                key={launch.id}
-                href={launch.links.video_link}
-                className={styles.card}
-              >
-                <h3>{launch.mission_name}</h3>
-                <p>
-                  <strong>Launch Date:</strong>{" "}
-                  {new Date(launch.launch_date_local).toLocaleDateString(
-                    "en-US"
-                  )}
-                </p>
-              </a>
+              <>
+                <a
+                  key={launch.id}
+                  href={launch.links.video_link}
+                  className={styles.card}
+                >
+                  <h3>{launch.mission_name}</h3>
+                  <p>
+                    <strong>Launch Date:</strong>{" "}
+                    {new Date(launch.launch_date_local).toLocaleDateString(
+                      "en-US"
+                    )}
+                  </p>
+                  <Image
+                    src={launch.ships[0].image}
+                    placeholder="blur"
+                    blurDataURL="null"
+                    height={100}
+                    width={100}
+                    quality={80}
+                    alt={launch.ships[0].name}
+                  />
+                </a>
+              </>
             );
           })}
         </div>
