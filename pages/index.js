@@ -41,7 +41,7 @@ export default function Home({ launches }) {
                         "https://www.google.com/images/branding/googlelogo/1x/googlelogo_color_272x92dp.png")
                     }
                     placeholder="blur"
-                    blurDataURL="null"
+                    blurDataURL="https://www.google.com/images/branding/googlelogo/1x/googlelogo_color_272x92dp.png"
                     height={100}
                     width={100}
                     quality={80}
