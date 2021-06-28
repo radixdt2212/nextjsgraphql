@@ -35,13 +35,17 @@ export default function Home({ launches }) {
                     )}
                   </p>
                   <Image
-                    src={launch.ships[0].image}
+                    src={launch.links.mission_patch}
+                    onError={() =>
+                      (this.src =
+                        "https://www.google.com/images/branding/googlelogo/1x/googlelogo_color_272x92dp.png")
+                    }
                     placeholder="blur"
                     blurDataURL="null"
                     height={100}
                     width={100}
                     quality={80}
-                    alt={launch.ships[0].name}
+                    alt={launch.mission_name}
                   />
                 </a>
               </>
