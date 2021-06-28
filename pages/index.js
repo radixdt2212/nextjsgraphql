@@ -4,11 +4,6 @@ import styles from "../styles/Home.module.css";
 import { ApolloClient, InMemoryCache, gql } from "@apollo/client";
 
 export default function Home({ launches }) {
-  function onErrorImage(e) {
-    e.target.src =
-      "https://www.google.com/images/branding/googlelogo/1x/googlelogo_color_272x92dp.png";
-  }
-
   return (
     <div className={styles.container}>
       <Head>
@@ -25,34 +20,39 @@ export default function Home({ launches }) {
         <div className={styles.grid}>
           {launches.map((launch) => {
             return (
-              <a
-                key={launch.id}
-                href={launch.links.video_link}
-                className={styles.card}
-              >
-                <h3>{launch.mission_name}</h3>
-                <p>
-                  <strong>Launch Date:</strong>{" "}
-                  {new Date(launch.launch_date_local).toLocaleDateString(
-                    "en-US"
-                  )}
-                </p>
+              <span key={launch.id} className={styles.card}>
+                <a href={launch.links.video_link}>
+                  <h3>{launch.mission_name}</h3>
+                  <p>
+                    <strong>Launch Date:</strong>{" "}
+                    {new Date(launch.launch_date_local).toLocaleDateString(
+                      "en-US"
+                    )}
+                  </p>
 
-                <Image
-                  src="https://www.google.com/images/branding/googlelogo/1x/googlelogo_color_272x92dp.png"
-                  onError={() => onErrorImage}
-                  placeholder="blur"
-                  blurDataURL="https://www.google.com/images/branding/googlelogo/1x/googlelogo_color_272x92dp.png"
-                  height={100}
-                  width={100}
-                  quality={80}
-                  alt={
-                    launch.links.mission_patch
-                      ? launch.links.mission_patch
-                      : "https://www.google.com/images/branding/googlelogo/1x/googlelogo_color_272x92dp.png"
-                  }
-                />
-              </a>
+                  <Image
+                    src="https://www.google.com/images/branding/googlelogo/1x/googlelogo_color_272x92dp.png"
+                    placeholder="blur"
+                    blurDataURL="https://www.google.com/images/branding/googlelogo/1x/googlelogo_color_272x92dp.png"
+                    height={100}
+                    width={100}
+                    quality={80}
+                    alt={
+                      launch.links.mission_patch
+                        ? launch.links.mission_patch
+                        : "https://www.google.com/images/branding/googlelogo/1x/googlelogo_color_272x92dp.png"
+                    }
+                  />
+                  <br />
+                </a>
+                <a
+                  href={launch.links.mission_patch}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Open Image
+                </a>
+              </span>
             );
           })}
         </div>
